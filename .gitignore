@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Secrets - NEVER commit these
+**/hosts.yml
+**/*.secret
+**/*.secrets
+**/credentials*
+**/*.pem
+**/*.key
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+
+# Neovim
+config/nvim/lazy-lock.json
+config/nvim/.luarc.json
+
+# Claude artifacts
+**/.claude/
+
+# Local overrides (create these for machine-specific settings)
+*.local
+*.local.*
+
+# Logs
+*.log

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#E36464",
+          "style": "plain",
+          "template": "@{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "foreground": "#FFD700",
+          "style": "plain",
+          "template": "{{ if .SSHSession }}\uf489 {{ end }}",
+          "type": "session"
+        },
+        {
+          "foreground": "#56B6C2",
+          "properties": {
+            "style": "folder"
+          },
+          "style": "plain",
+          "template": "{{ .Path }}",
+          "type": "path"
+        },
+        {
+          "foreground": "#D4AAFC",
+          "foreground_templates": [
+            "{{ if .Working.Changed }}#FFCA85{{ end }}",
+            "{{ if and .Staging.Changed (not .Working.Changed) }}#61FFCA{{ end }}"
+          ],
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": " <#DDB15F>git(</>{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#FFCA85>*{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <#61FFCA>+{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <#E5C07B>\uf01c {{ .StashCount }}</>{{ end }}<#DDB15F>)</>",
+          "type": "git"
+        },
+        {
+          "foreground": "#3572A5",
+          "style": "plain",
+          "template": " \ue235 {{ .Full }}",
+          "type": "python"
+        },
+        {
+          "foreground": "#DCB977",
+          "style": "plain",
+          "template": " \uf119",
+          "type": "status"
+        },
+        {
+          "foreground": "#6C6C6C",
+          "properties": {
+            "threshold": 200
+          },
+          "style": "plain",
+          "template": " {{ .FormattedMs }}",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "#6C6C6C",
+          "style": "plain",
+          "template": "{{ .CurrentDate | date \"15:04\" }}",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#62ED8B",
+          "style": "plain",
+          "template": "\u279c ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "transient_prompt": {
+    "foreground": "#62ED8B",
+    "template": "\u279c "
+  },
+  "final_space": true,
+  "version": 4
+}
