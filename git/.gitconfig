@@ -7,6 +7,6 @@
 	process = git-lfs filter-process
 	required = true
 [init]
-	defaultBranch = master
+	defaultbranch = main
 [pull]
 	rebase = true

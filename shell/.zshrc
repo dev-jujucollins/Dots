@@ -115,6 +115,8 @@ alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
 
+# Git
+alias gone="git log --oneline"
 # Custom scripts
 alias builder="/Users/julius/bin/./build.sh"
 
