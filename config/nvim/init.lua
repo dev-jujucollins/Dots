@@ -320,16 +320,16 @@ require('lazy').setup({
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'Harpoon: Toggle menu' })
-      vim.keymap.set('n', '<C-1>', function()
+      vim.keymap.set('n', '<leader>1', function()
         harpoon:list():select(1)
       end, { desc = 'Harpoon: File 1' })
-      vim.keymap.set('n', '<C-2>', function()
+      vim.keymap.set('n', '<leader>2', function()
         harpoon:list():select(2)
       end, { desc = 'Harpoon: File 2' })
-      vim.keymap.set('n', '<C-3>', function()
+      vim.keymap.set('n', '<leader>3', function()
         harpoon:list():select(3)
       end, { desc = 'Harpoon: File 3' })
-      vim.keymap.set('n', '<C-4>', function()
+      vim.keymap.set('n', '<leader>4', function()
         harpoon:list():select(4)
       end, { desc = 'Harpoon: File 4' })
     end,
@@ -1027,9 +1027,10 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'copilot' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          copilot = { name = 'copilot', module = 'blink-cmp-copilot', async = true },
         },
       },
 
@@ -1157,7 +1158,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
