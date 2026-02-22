@@ -109,7 +109,7 @@ alias ....='cd ../../..'
 # Utilities
 alias c='clear'
 alias copypath='pwd | pbcopy'
-alias ff="pokeget psyduck --hide-name | fastfetch --file-raw -"
+alias ff='pokeget porygon --hide-name | fastfetch --file-raw -'
 alias cat='bat'
 alias grep='grep --color=auto'
 alias df='df -h'
@@ -157,7 +157,7 @@ export HOMEBREW_NO_UPDATE_REPORT_NEW=1
 # ============================================================================
 # Prompt Configuration
 # ============================================================================
-# oh-my-posh - must be loaded after syntax highlighting
-if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/zash.omp.json)"
+# Starship prompt - must be loaded after syntax highlighting
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
 fi

@@ -72,8 +72,19 @@ echo ""
 echo -e "${BLUE}Ghostty terminal:${NC}"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
+    GHOSTTY_CONFIG="$GHOSTTY_DIR/config"
+    DOTFILES_GHOSTTY_CONFIG="$DOTFILES_DIR/config/ghostty/config"
     mkdir -p "$GHOSTTY_DIR"
-    link_file "$DOTFILES_DIR/config/ghostty/config" "$GHOSTTY_DIR/config" "ghostty config"
+
+    # Migrate old setup where Application Support pointed at dotfiles.
+    if [ -L "$GHOSTTY_CONFIG" ] && [ "$(readlink "$GHOSTTY_CONFIG")" = "$DOTFILES_GHOSTTY_CONFIG" ]; then
+        rm "$GHOSTTY_CONFIG"
+        cp "$DOTFILES_GHOSTTY_CONFIG" "$GHOSTTY_CONFIG"
+    fi
+
+    # Make Application Support the source of truth, with dotfiles linked to it.
+    link_file "$GHOSTTY_CONFIG" "$DOTFILES_GHOSTTY_CONFIG" "ghostty config (dotfiles -> Application Support)"
+    link_file "$GHOSTTY_CONFIG" "$HOME/.config/ghostty/config" "ghostty config (~/.config)"
 else
     link_file "$DOTFILES_DIR/config/ghostty" "$HOME/.config/ghostty" "ghostty"
 fi
