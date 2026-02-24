@@ -9,7 +9,7 @@ Personal dotfiles for macOS development environment.
 | **nvim** | Neovim (Kickstart.nvim + Tokyo Night) |
 | **shell** | Zsh/Bash configuration |
 | **git** | Git configuration |
-| **oh-my-posh** | Terminal prompt theme |
+| **starship** | Terminal prompt |
 | **fastfetch** | System info display |
 | **btop** | System monitor |
 | **ghostty** | Ghostty terminal emulator |
@@ -40,7 +40,7 @@ chmod +x install.sh
 ~/.dotfiles/
 ├── config/
 │   ├── nvim/           # Neovim configuration
-│   ├── oh-my-posh/     # Prompt theme
+│   ├── starship.toml   # Starship prompt config
 │   ├── fastfetch/      # System info config
 │   ├── btop/           # System monitor
 │   ├── ghostty/        # Terminal config
@@ -74,7 +74,7 @@ git pull
 This setup assumes the following are installed:
 
 - [Neovim](https://neovim.io/) (0.10+)
-- [Oh My Posh](https://ohmyposh.dev/)
+- [Starship](https://starship.rs/)
 - [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - [btop](https://github.com/aristocratos/btop)
 - [Ghostty](https://ghostty.org/)
@@ -84,7 +84,7 @@ This setup assumes the following are installed:
 ### Install on macOS with Homebrew
 
 ```bash
-brew install neovim jandedobbeleer/oh-my-posh/oh-my-posh fastfetch btop gh
+brew install neovim starship fastfetch btop gh
 brew install --cask ghostty
 ```
 

@@ -62,7 +62,7 @@ echo ""
 # .config directory items
 echo -e "${BLUE}Config directory (~/.config):${NC}"
 link_file "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim" "nvim"
-link_file "$DOTFILES_DIR/config/oh-my-posh" "$HOME/.config/oh-my-posh" "oh-my-posh"
+link_file "$DOTFILES_DIR/config/starship.toml" "$HOME/.config/starship.toml" "starship.toml"
 link_file "$DOTFILES_DIR/config/fastfetch" "$HOME/.config/fastfetch" "fastfetch"
 link_file "$DOTFILES_DIR/config/btop" "$HOME/.config/btop" "btop"
 # gh CLI excluded (contains auth tokens in hosts.yml)
