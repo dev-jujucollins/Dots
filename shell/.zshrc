@@ -109,7 +109,7 @@ alias ....='cd ../../..'
 # Utilities
 alias c='clear'
 alias copypath='pwd | pbcopy'
-alias ff='pokeget porygon --hide-name | fastfetch --file-raw -'
+alias ff='pokeget psyduck --hide-name | fastfetch --file-raw -'
 alias cat='bat'
 alias grep='grep --color=auto'
 alias df='df -h'
