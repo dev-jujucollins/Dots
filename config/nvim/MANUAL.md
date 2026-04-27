@@ -8,16 +8,17 @@
 2. [Navigation](#navigation)
 3. [File Management](#file-management)
 4. [Search & Find](#search--find)
-5. [Code Intelligence (LSP)](#code-intelligence-lsp)
-6. [Autocompletion](#autocompletion)
-7. [Debugging](#debugging)
-8. [Testing](#testing)
-9. [Python Development](#python-development)
-10. [Git Integration](#git-integration)
-11. [Terminal](#terminal)
-12. [Sessions](#sessions)
-13. [Plugin Management](#plugin-management)
-14. [Quick Reference Card](#quick-reference-card)
+5. [Code Navigation](#code-navigation)
+6. [Code Intelligence (LSP)](#code-intelligence-lsp)
+7. [Autocompletion](#autocompletion)
+8. [Debugging](#debugging)
+9. [Testing](#testing)
+10. [Python Development](#python-development)
+11. [Git Integration](#git-integration)
+12. [Terminal](#terminal)
+13. [Sessions](#sessions)
+14. [Plugin Management](#plugin-management)
+15. [Quick Reference Card](#quick-reference-card)
 
 ---
 
@@ -110,12 +111,26 @@ Bookmark your most-used files and jump to them instantly.
 |-----|--------|
 | `<leader>a` | Add current file to Harpoon |
 | `<C-e>` | Open Harpoon menu |
-| `<C-1>` | Jump to Harpoon file 1 |
-| `<C-2>` | Jump to Harpoon file 2 |
-| `<C-3>` | Jump to Harpoon file 3 |
-| `<C-4>` | Jump to Harpoon file 4 |
+| `<leader>1` | Jump to Harpoon file 1 |
+| `<leader>2` | Jump to Harpoon file 2 |
+| `<leader>3` | Jump to Harpoon file 3 |
+| `<leader>4` | Jump to Harpoon file 4 |
 
-**Workflow**: Open your main files, press `<leader>a` on each to bookmark them. Then use `<C-1>` through `<C-4>` to instantly switch between them.
+**Workflow**: Open your main files, press `<leader>a` on each to bookmark them. Then use `<leader>1` through `<leader>4` to instantly switch between them.
+
+### Flash (Fast Jumping)
+
+Flash shows jump labels for visible matches and lets you move with only a few keys.
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `s` | Normal/Visual/Operator | Jump to visible text |
+| `S` | Normal/Visual/Operator | Treesitter-aware jump |
+| `r` | Operator | Remote jump target |
+| `R` | Visual/Operator | Treesitter search |
+| `<C-s>` | Command | Toggle Flash search |
+
+**Example**: Press `s`, type a few letters from the target, then press the displayed label.
 
 ---
 
@@ -186,6 +201,8 @@ Telescope is your main tool for finding anything.
 | `<leader>sr` | **[S]earch [R]esume** - Reopen last search |
 | `<leader>s/` | **Search in Open Files** - Grep only in buffers |
 | `<leader>sn` | **[S]earch [N]eovim files** - Search your config |
+| `<leader>sa` | **[S]earch [A]erial Symbols** - Fuzzy find symbols in current file |
+| `<leader>so` | **[S]ymbol [O]utline** - Toggle symbol outline sidebar |
 
 **Inside Telescope:**
 
@@ -201,6 +218,43 @@ Telescope is your main tool for finding anything.
 
 ---
 
+## Code Navigation
+
+### Aerial (Symbol Outline)
+
+Aerial shows the structure of the current file: functions, classes, methods, headings, and other symbols.
+
+| Key | Action |
+|-----|--------|
+| `<leader>so` | Toggle symbol outline |
+| `<leader>sa` | Search current-file symbols with Telescope |
+
+Use Aerial when a file is large and you want a structural overview instead of text search.
+
+### Treesitter Textobjects
+
+Treesitter textobjects let you select and move by code structure instead of raw text.
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `af` | Visual/Operator | Around function |
+| `if` | Visual/Operator | Inside function |
+| `ac` | Visual/Operator | Around class |
+| `ic` | Visual/Operator | Inside class |
+| `aa` | Visual/Operator | Around argument |
+| `ia` | Visual/Operator | Inside argument |
+| `]f` | Normal | Next function |
+| `[f` | Normal | Previous function |
+| `]c` | Normal | Next class |
+| `[c` | Normal | Previous class |
+
+**Examples:**
+- `vaf` selects the whole function.
+- `cif` changes only the function body.
+- `daf` deletes the whole function.
+
+---
+
 ## Code Intelligence (LSP)
 
 LSP (Language Server Protocol) provides smart code features.
@@ -209,8 +263,12 @@ LSP (Language Server Protocol) provides smart code features.
 
 | Language | Server |
 |----------|--------|
-| Python | basedpyright |
+| Python | basedpyright, ruff |
 | Lua | lua_ls |
+
+**Python split:**
+- `basedpyright`: type checking, completions, definitions
+- `ruff`: lint diagnostics and code actions
 
 ### Go To Commands
 
@@ -242,6 +300,18 @@ LSP (Language Server Protocol) provides smart code features.
 | `[d` | Previous diagnostic |
 | `<leader>q` | Open diagnostic quickfix list |
 | `<leader>sd` | Search all diagnostics (Telescope) |
+| `<leader>xx` | Toggle all diagnostics (Trouble) |
+| `<leader>xX` | Toggle buffer diagnostics (Trouble) |
+| `<leader>xs` | Toggle document symbols (Trouble) |
+| `<leader>xl` | Toggle LSP references/definitions/etc. (Trouble) |
+| `<leader>xL` | Toggle location list (Trouble) |
+| `<leader>xQ` | Toggle quickfix list (Trouble) |
+
+### Trouble
+
+Trouble gives diagnostics, symbols, references, quickfix, and loclist a stable navigable panel.
+
+Use Telescope when you want fuzzy search. Use Trouble when you want a persistent list you can work through.
 
 ### Formatting
 
@@ -281,6 +351,9 @@ Completions come from:
 2. **Path** - File paths
 3. **Snippets** - Code snippets (LuaSnip)
 4. **Lazydev** - Neovim Lua API (when editing config)
+5. **Copilot** - AI suggestions through blink.cmp
+
+Blink uses its Rust fuzzy matcher when available and falls back safely if needed.
 
 ### Snippets
 
@@ -495,13 +568,16 @@ Powered by **lazy.nvim**.
 ║   <leader>sf     Find files          -            File explorer   ║
 ║   <leader>sg     Grep in project     <leader><leader>  Buffers    ║
 ║   <leader>s.     Recent files        <C-e>        Harpoon menu    ║
-║   <leader>a      Add to Harpoon      <C-1/2/3/4>  Harpoon jump    ║
+║   <leader>a      Add to Harpoon      <leader>1-4  Harpoon jump    ║
+║   s              Flash jump          S            TS jump         ║
 ╠═══════════════════════════════════════════════════════════════════╣
 ║ CODE INTELLIGENCE                                                 ║
 ║   grd            Go to definition    grr          Find references ║
 ║   grn            Rename symbol       gra          Code action     ║
 ║   K              Hover docs          <leader>f    Format          ║
 ║   gO             Document symbols    <leader>th   Toggle hints    ║
+║   <leader>xx     Diagnostics panel   <leader>so   Symbol outline  ║
+║   af/if          Around/in function  ]f/[f        Next/prev fn    ║
 ╠═══════════════════════════════════════════════════════════════════╣
 ║ COMPLETION (blink.cmp)                                            ║
 ║   <Tab>          Accept              <C-n>/<C-p>  Navigate        ║
@@ -546,7 +622,7 @@ Powered by **lazy.nvim**.
 Instead of `jjjjj`, type `5j`. Look at the relative number and jump directly.
 
 ### 2. Use Harpoon for Main Files
-In most projects, you work with 3-5 files constantly. Harpoon them once, then `<C-1>` through `<C-4>` forever.
+In most projects, you work with 3-5 files constantly. Harpoon them once, then `<leader>1` through `<leader>4` forever.
 
 ### 3. Use Telescope for Everything Else
 - Don't know the filename? `<leader>sf` and fuzzy search
@@ -558,10 +634,13 @@ In most projects, you work with 3-5 files constantly. Harpoon them once, then `<
 - Don't manually rename—use `grn`
 - Trust the red squiggles—they're usually right
 
-### 5. Master the Search + Center Pattern
+### 5. Use Structural Navigation
+Use `s` for quick visible jumps, `<leader>so` for file structure, and `af`/`if` when editing whole functions.
+
+### 6. Master the Search + Center Pattern
 Search with `/`, then `n` and `N` keep you centered. You'll never lose context.
 
-### 6. Use Visual Mode + J/K
+### 7. Use Visual Mode + J/K
 Select lines with `V`, then `J`/`K` to rearrange code blocks. Much faster than cut/paste.
 
 ---
